@@ -1,5 +1,6 @@
+"use client";
+import { useAuth } from '@/context/AuthContext';
 import React from 'react';
-import { useAuth } from './AuthContext';
 
 const OrdersUI = () => {
   const { orders, currentUser } = useAuth();

@@ -1,9 +1,9 @@
 'use client';
 
-import { useAuth } from '../../context/AuthContext';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Login from "@/app/login/page";
+import { useAuth } from '@/context/AuthContext';
 
 
 const LoginPage = () => {
