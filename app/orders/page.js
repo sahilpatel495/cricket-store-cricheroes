@@ -2,7 +2,7 @@
 import { useAuth } from '@/context/AuthContext';
 import React from 'react';
 
-const OrdersUI = () => {
+const Orders = () => {
   const { orders, currentUser } = useAuth();
 
   if (!currentUser) {
@@ -42,4 +42,4 @@ const OrdersUI = () => {
   );
 };
 
-export default OrdersUI;
+export default Orders;

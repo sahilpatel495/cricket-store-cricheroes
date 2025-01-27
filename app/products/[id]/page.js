@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import ProductDetail from '../../../components/ProductDetail';
-import { useParams } from 'next/navigation'; // Import useParams from next/navigation
+import { useParams } from 'next/navigation';
 
 const ProductPage = () => {
-  const { id } = useParams(); // Unwrap params using useParams
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
 
   useEffect(() => {

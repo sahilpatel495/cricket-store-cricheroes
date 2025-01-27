@@ -1,47 +1,3 @@
-// 'use client'
-// import React, { createContext, useState, useContext } from 'react';
-
-// // Create the AuthContext
-// const AuthContext = createContext();
-
-// // Create a provider component
-// export const AuthProvider = ({ children }) => {
-//   const [currentUser , setCurrentUser ] = useState(null);
-//   const [users, setUsers] = useState([]); // Store registered users
-
-//   const addToCart = (product) => {
-//     // Your existing addToCart logic
-//   };
-
-//   const login = (user) => {
-//     // Your existing login logic
-//     setCurrentUser (user);
-//   };
-
-//   const logout = () => {
-//     setCurrentUser (null);
-//   };
-
-//   console.log(currentUser,"currentUser at context");
-
-//   const register = (user) => {
-//     setUsers((prevUsers) => [...prevUsers, user]);
-//     setCurrentUser (user); // Automatically log in the user after registration
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ currentUser, addToCart, login, logout, register }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// // Create a custom hook to use the AuthContext
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
-
-// export default AuthContext;
 
 'use client';
 
@@ -53,27 +9,132 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [userCarts, setUserCarts] = useState({});
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Initialize auth state from localStorage on mount
+  // Initialize auth state and user-specific cart from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem('currentUser');
-    const storedCart = localStorage.getItem('cart');
+    const storedCarts = localStorage.getItem('userCarts');
     
     if (storedUser) {
-      setCurrentUser(JSON.parse(storedUser));
-    }
-    
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
+      const user = JSON.parse(storedUser);
+      setCurrentUser(user);
+      
+      // Initialize carts from localStorage
+      if (storedCarts) {
+        setUserCarts(JSON.parse(storedCarts));
+      }
     }
     
     setLoading(false);
   }, []);
 
-  const login = (credentials) => {
+  // Get current user's cart
+  const getCurrentUserCart = () => {
+    return currentUser ? (userCarts[currentUser.id] || []) : [];
+  };
+
+  const addToCart = (product, quantity, selectedOptions = {}) => {
+    if (!currentUser) {
+      router.push('/login');
+      toast.error('Please login to add items to cart');
+      return { success: false, error: 'Please login to add items to cart' };
+    }
+
+    const { size, color } = selectedOptions;
+    if (!size || !color) {
+      toast.error('Please select size and color');
+      return { success: false, error: 'Please select size and color' };
+    }
+
+    const currentCart = getCurrentUserCart();
+    const productKey = `${product.id}-${size}-${color}`;
+    
+    const existingItemIndex = currentCart.findIndex(item => 
+      item.id === product.id && 
+      item.selectedSize === size && 
+      item.selectedColor === color
+    );
+
+    let updatedCart;
+    if (existingItemIndex >= 0) {
+      // Update existing item
+      updatedCart = currentCart.map((item, index) => 
+        index === existingItemIndex 
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      );
+    } else {
+      // Add new item
+      updatedCart = [...currentCart, {
+        ...product,
+        quantity,
+        selectedSize: size,
+        selectedColor: color,
+        productKey
+      }];
+    }
+
+    // Update user's cart
+    const newUserCarts = {
+      ...userCarts,
+      [currentUser.id]: updatedCart
+    };
+
+    setUserCarts(newUserCarts);
+    localStorage.setItem('userCarts', JSON.stringify(newUserCarts));
+    toast.success('Product added to cart');
+    return { success: true };
+  };
+
+  const removeFromCart = (productKey) => {
+    if (!currentUser) return;
+
+    const updatedCart = getCurrentUserCart().filter(
+      item => item.productKey !== productKey
+    );
+
+    const newUserCarts = {
+      ...userCarts,
+      [currentUser.id]: updatedCart
+    };
+
+    setUserCarts(newUserCarts);
+    localStorage.setItem('userCarts', JSON.stringify(newUserCarts));
+  };
+
+  const updateCartQuantity = (productKey, quantity) => {
+    if (!currentUser) return;
+
+    const updatedCart = getCurrentUserCart().map(item =>
+      item.productKey === productKey ? { ...item, quantity } : item
+    );
+
+    const newUserCarts = {
+      ...userCarts,
+      [currentUser.id]: updatedCart
+    };
+
+    setUserCarts(newUserCarts);
+    localStorage.setItem('userCarts', JSON.stringify(newUserCarts));
+  };
+
+  const clearCart = () => {
+    if (!currentUser) return;
+
+    const newUserCarts = {
+      ...userCarts,
+      [currentUser.id]: []
+    };
+
+    setUserCarts(newUserCarts);
+    localStorage.setItem('userCarts', JSON.stringify(newUserCarts));
+  };
+
+
+  const login = async (credentials) => {
     try {
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       const user = users.find(
@@ -93,12 +154,11 @@ export const AuthProvider = ({ children }) => {
       return { success: false, error: 'Invalid credentials' };
     } catch (error) {
       console.error('Login error:', error);
-      toast.error('An error occurred during login');
       return { success: false, error: 'An error occurred during login' };
     }
   };
 
-  const register = (userData) => {
+    const register = (userData) => {
     try {
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       
@@ -137,50 +197,9 @@ export const AuthProvider = ({ children }) => {
     router.push('/');
   };
 
-  const addToCart = (product, quantity ) => {
-    if (!currentUser) {
-      router.push('/login');
-      toast.error('Please login to add items to cart');
-      return { success: false, error: 'Please login to add items to cart' };
-    }
-
-    const updatedCart = [...cart];
-    const existingItem = updatedCart.find((item) => item.id === product.id);
-
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      updatedCart.push({ ...product, quantity });
-    }
-
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    toast.success('Product added to cart');
-    return { success: true };
-  };
-
-  const removeFromCart = (productId) => {
-    const updatedCart = cart.filter((item) => item.id !== productId);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const updateCartQuantity = (productId, quantity) => {
-    const updatedCart = cart.map((item) => 
-      item.id === productId ? { ...item, quantity: quantity } : item
-    );
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const clearCart = () => {
-    setCart([]);
-    localStorage.removeItem('cart');
-  };
-
   const value = {
     currentUser,
-    cart,
+    cart: getCurrentUserCart(),
     loading,
     login,
     register,
@@ -188,7 +207,13 @@ export const AuthProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateCartQuantity,
-    clearCart
+    clearCart,
+    getCartItemCount: (productId) => {
+      const cart = getCurrentUserCart();
+      return cart.reduce((total, item) => 
+        item.id === productId ? total + item.quantity : total, 0
+      );
+    }
   };
 
   return (

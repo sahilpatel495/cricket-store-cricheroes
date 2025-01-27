@@ -12,7 +12,7 @@
     "colors": ["Natural Wood", "Black"],
     "sizes": ["Short Handle", "Long Handle"],
     "ratings": 4.5,
-    "photos": ["https://example.com/cricket-bat-1.jpg", "https://example.com/cricket-bat-2.jpg"],
+    "photos": ["https://m.media-amazon.com/images/I/317VTY6RngL.jpg", "https://m.media-amazon.com/images/I/31oqeYloiPL.jpg"],
     "warranty": "6 months warranty."
   },
   {
@@ -21,12 +21,12 @@
     "shortDescription": "Durable and long-lasting.",
     "description": "Red cricket ball made with premium leather for durability and performance.",
     "price": 399.99,
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmfs1SFXrXzEyq_Fh4NuHa7UfmcchRJfeng&s",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Cricket-ball-red-madeinaustralia.jpg/800px-Cricket-ball-red-madeinaustralia.jpg",
     "category": "Balls",
     "colors": ["Red", "White"],
     "sizes": ["Standard"],
     "ratings": 4.7,
-    "photos": ["https://example.com/cricket-ball-1.jpg", "https://example.com/cricket-ball-2.jpg"],
+    "photos": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStRm3kY_QDPqZCyZIEdJNzzTOyugsaDDP-wbOd0ubE2rJpLUEtbWWiSRmduzREaMzHnNo&usqp=CAU", "https://www.shutterstock.com/image-illustration/3d-shiny-new-test-match-600nw-2449821457.jpg"],
     "warranty": "None"
   },
   {
@@ -35,12 +35,12 @@
     "shortDescription": "Comfortable and protective gloves.",
     "description": "Soft leather cricket batting gloves designed for comfort and protection during play.",
     "price": 1499.99,
-    "image": "https://example.com/cricket-batting-gloves.jpg",
+    "image": "https://t3.ftcdn.net/jpg/05/84/15/08/360_F_584150833_7DzqHHZ2jeDz3nzsD2xWM70O0CRlKtWM.jpg",
     "category": "Accessories",
     "colors": ["White", "Red"],
     "sizes": ["Medium", "Large"],
     "ratings": 4.8,
-    "photos": ["https://example.com/cricket-batting-gloves-1.jpg", "https://example.com/cricket-batting-gloves-2.jpg"],
+    "photos": ["https://t3.ftcdn.net/jpg/05/84/15/08/360_F_584150833_7DzqHHZ2jeDz3nzsD2xWM70O0CRlKtWM.jpg", "https://t3.ftcdn.net/jpg/05/84/15/08/360_F_584150833_7DzqHHZ2jeDz3nzsD2xWM70O0CRlKtWM.jpg"],
     "warranty": "1 year warranty"
   },
   {
@@ -49,12 +49,12 @@
     "shortDescription": "Protective helmet for head safety.",
     "description": "High-quality cricket helmet with adjustable straps for a perfect fit and safety.",
     "price": 1770,
-    "image": "https://example.com/cricket-helmet.jpg",
+    "image": "https://cricketershop.com/cdn/shop/files/1_b654c53d-d380-4cc2-9c29-7612afe82a51.webp?v=1723549760&width=1800",
     "category": "Protective Gear",
     "colors": ["Black", "Blue"],
     "sizes": ["Small", "Medium", "Large"],
     "ratings": 4.6,
-    "photos": ["https://example.com/cricket-helmet-1.jpg", "https://example.com/cricket-helmet-2.jpg"],
+    "photos": ["https://cricketershop.com/cdn/shop/files/1_b654c53d-d380-4cc2-9c29-7612afe82a51.webp?v=1723549760&width=1800", "https://cricketershop.com/cdn/shop/files/1_b654c53d-d380-4cc2-9c29-7612afe82a51.webp?v=1723549760&width=1800"],
     "warranty": "2 years warranty"
   },
   {
@@ -63,12 +63,12 @@
     "shortDescription": "Comfortable and durable shoes for players.",
     "description": "Cricket shoes designed for excellent grip and comfort on the field.",
     "price": 6799.99,
-    "image": "https://example.com/cricket-shoes.jpg",
+    "image": "https://cricketershop.com/cdn/shop/files/Gowin_Tyro_Cricket_Spike_All_White_Shoes_Size_Composite_View__44199.1702395488.1280.1280.jpg?v=1721652627&width=720",
     "category": "Footwear",
     "colors": ["White", "Black"],
     "sizes": ["7", "8", "9", "10", "11"],
     "ratings": 4.4,
-    "photos": ["https://example.com/cricket-shoes-1.jpg", "https://example.com/cricket-shoes-2.jpg"],
+    "photos": ["https://cricketershop.com/cdn/shop/files/Gowin_Tyro_Cricket_Spike_All_White_Shoes_Size_Composite_View__44199.1702395488.1280.1280.jpg?v=1721652627&width=720", "https://cricketershop.com/cdn/shop/files/Gowin_Tyro_Cricket_Spike_All_White_Shoes_Size_Composite_View__44199.1702395488.1280.1280.jpg?v=1721652627&width=720"],
     "warranty": "1 year warranty"
   },
   {
@@ -77,12 +77,12 @@
     "shortDescription": "Lightweight and protective cricket pads.",
     "description": "Lightweight cricket pads for enhanced comfort and protection.",
     "price": 1299.99,
-    "image": "https://example.com/cricket-pads.jpg",
+    "image": "https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800",
     "category": "Protective Gear",
     "colors": ["White", "Blue"],
     "sizes": ["Standard", "Large"],
     "ratings": 4.7,
-    "photos": ["https://example.com/cricket-pads-1.jpg", "https://example.com/cricket-pads-2.jpg"],
+    "photos": ["https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800", "https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800"],
     "warranty": "6 months warranty"
   },
   {
@@ -246,12 +246,13 @@
       "shortDescription": "Protective gear for your forearm.",
       "description": "Arm guard to protect your forearm from fast deliveries.",
       "price": 1400.99,
-      "image": "https://example.com/cricket-arm-guard.jpg",
+       "image": "https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800",
+
       "category": "Protective Gear",
       "colors": ["Black", "White"],
       "sizes": ["Standard"],
       "ratings": 4.6,
-      "photos": ["https://example.com/cricket-arm-guard-1.jpg", "https://example.com/cricket-arm-guard-2.jpg"],
+    "photos": ["https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800", "https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800"],
       "warranty": "1 year warranty"
     },
     {
@@ -260,7 +261,8 @@
       "shortDescription": "Essential protection for your knees.",
       "description": "Cricket knee guard for safety and comfort during play.",
       "price": 999.99,
-      "image": "https://example.com/cricket-knee-guard.jpg",
+      "image": "https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800",
+
       "category": "Protective Gear",
       "colors": ["Black", "Red"],
       "sizes": ["Standard"],
@@ -274,7 +276,8 @@
       "shortDescription": "Essential thigh protection for cricketers.",
       "description": "Cricket thigh guard for protection against injuries during fast deliveries.",
       "price": 899.99,
-      "image": "https://example.com/cricket-thigh-guard.jpg",
+      "image": "https://cricketershop.com/cdn/shop/files/1_6b6399b0-1b5f-404d-8f02-02f9e41768f1.webp?v=1725699682&width=1800",
+
       "category": "Protective Gear",
       "colors": ["Black", "White"],
       "sizes": ["Medium", "Large"],
@@ -358,7 +361,7 @@
       "shortDescription": "Training bat for skill development.",
       "description": "Specially designed training bat for practicing shots and improving batting technique.",
       "price": 4999.99,
-      "image": "https://example.com/cricket-training-bat.jpg",
+      "image": "https://www.cricketcentral.in/wp-content/uploads/2024/03/Cricket-Central-MRF-Grandp-Edition-Players-Cricket-Bat.jpeg",
       "category": "Training Equipment",
       "colors": ["Wood", "Blue"],
       "sizes": ["Standard"],

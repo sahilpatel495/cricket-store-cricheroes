@@ -58,6 +58,7 @@ const Filters = ({
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
         >
+          <option value="none">Sort by</option>
           <option value="a-z">Name (A-Z)</option>
           <option value="z-a">Name (Z-A)</option>
           <option value="price-low-high">Price (Low to High)</option>

@@ -13,26 +13,6 @@ export default function SignIn() {
   const router = useRouter();
   const { login } = useAuth();
 
-  // const handleSignIn = async (e) => {
-  //   e.preventDefault();
-    
-  //   const usersString = localStorage.getItem('users');
-  //   const users = usersString ? JSON.parse(usersString) : [];
-    
-  //   const user = users.find(
-  //     (user) => user.email === email && user.password === password
-  //   );
-
-  //   if (user) {
-  //    await localStorage.setItem('isAuthenticated', 'true');
-  //    await localStorage.setItem('currentUser', JSON.stringify(user));
-      
-  //     router.push('/');
-  //   } else {
-  //     setError('Invalid email or password');
-  //   }
-  // };
-
   const handleSignIn = async (e) => {
     e.preventDefault();
     setError('');
@@ -97,7 +77,7 @@ export default function SignIn() {
 
           <button
             type="submit"
-            className="w-full rounded-full bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition duration-300"
+            className="w-full rounded-full bg-gray-800 text-white py-2  hover:bg-gray-900 transition duration-300"
             >
             Sign In
           </button>
@@ -107,7 +87,7 @@ export default function SignIn() {
       
       <button 
         onClick={() => router.push('/register')}
-        className="w-80 mt-4 rounded-full text-gray-900 py-2 rounded bg-white border border-black hover:bg-gray-100 transition duration-300"
+        className="w-80 mt-4 rounded-full text-gray-900 py-2 bg-white border border-black hover:bg-gray-100 transition duration-300"
       >
         Create new account
       </button>
