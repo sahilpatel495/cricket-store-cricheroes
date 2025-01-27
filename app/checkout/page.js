@@ -1,34 +1,39 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '@/context/AuthContext';
-import { CreditCard,BadgeIndianRupee, Banknote } from 'lucide-react';
+"use client";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { CreditCard, BadgeIndianRupee, Banknote } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Checkout = () => {
-  const { currentUser, cart, removeFromCart, updateCartQuantity, clearCart } = useAuth();
+  const { currentUser, cart, removeFromCart, updateCartQuantity, clearCart } =
+    useAuth();
   const [total, setTotal] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [address, setAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     // Calculate total price
-    const calculatedTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const calculatedTotal = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
     setTotal(calculatedTotal);
   }, [cart]);
 
   const handlePlaceOrder = () => {
     if (!address || !paymentMethod) {
-      alert('Please fill in all details to proceed.');
+      toast.error("Please fill in all details to proceed.");
       return;
     }
     // Process payment and clear cart
-    alert('Order placed successfully!');
+    toast.success("Order placed successfully!");
     clearCart();
   };
 
   if (!currentUser) return <div>Please log in to view your cart.</div>;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 m-8 bg-white" >
+    <div className="max-w-4xl mx-auto px-4 py-8 m-8 bg-white">
       <h1 className="text-2xl font-bold mb-6">Cart & Checkout</h1>
 
       {/* Cart Section */}
@@ -38,7 +43,10 @@ const Checkout = () => {
           <p>Your cart is empty.</p>
         ) : (
           cart.map((item) => (
-            <div key={item.id} className="flex items-center justify-between py-4 border-b">
+            <div
+              key={item.id}
+              className="flex items-center justify-between py-4 border-b"
+            >
               <div className="flex items-center gap-4">
                 <img
                   src={item.image}
@@ -47,12 +55,16 @@ const Checkout = () => {
                 />
                 <div>
                   <h3 className="text-lg font-medium">{item.name}</h3>
-                  <p className="text-sm text-gray-600">₹{item.price.toFixed(2)}</p>
+                  <p className="text-sm text-gray-600">
+                    ₹{item.price.toFixed(2)}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <button
-                  onClick={() => updateCartQuantity(item.id, Math.max(1, item.quantity - 1))}
+                  onClick={() =>
+                    updateCartQuantity(item.id, Math.max(1, item.quantity - 1))
+                  }
                   className="px-3 py-1 btn btn-brand-800 border rounded hover:bg-brand-800"
                 >
                   -
@@ -101,27 +113,33 @@ const Checkout = () => {
             <h3 className="text-sm font-medium mb-2">Payment Method</h3>
             <div className="flex gap-4">
               <button
-                onClick={() => setPaymentMethod('Credit Card')}
+                onClick={() => setPaymentMethod("Credit Card")}
                 className={`px-4 py-2 rounded-lg border ${
-                  paymentMethod === 'Credit Card' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                  paymentMethod === "Credit Card"
+                    ? "bg-primary-500 text-white"
+                    : "hover:bg-gray-100"
                 }`}
               >
                 <CreditCard size={20} className="mr-2" />
                 Credit Card
               </button>
               <button
-                onClick={() => setPaymentMethod('Cash')}
+                onClick={() => setPaymentMethod("Cash")}
                 className={`px-4 py-2 rounded-lg border ${
-                  paymentMethod === 'Cash' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                  paymentMethod === "Cash"
+                    ? "bg-primary-500 text-white"
+                    : "hover:bg-gray-100"
                 }`}
               >
                 <BadgeIndianRupee size={20} className="mr-2" />
                 Cash
               </button>
               <button
-                onClick={() => setPaymentMethod('Bank Transfer')}
+                onClick={() => setPaymentMethod("Bank Transfer")}
                 className={`px-4 py-2 rounded-lg border ${
-                  paymentMethod === 'Bank Transfer' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                  paymentMethod === "Bank Transfer"
+                    ? "bg-primary-500 text-white"
+                    : "hover:bg-gray-100"
                 }`}
               >
                 <Banknote size={20} className="mr-2" />

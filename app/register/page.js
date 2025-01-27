@@ -1,60 +1,3 @@
-// 'use client';
-
-// import { useAuth } from '@/context/AuthContext';
-// import { useState } from 'react';
-
-// const Register = ({ onClose }) => {
-//   const { register } = useAuth();
-//   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     register({ name, email, password });
-//     onClose(); // Close the popup after registration
-//   };
-
-//   return (
-//     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-//       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
-//         <h2 className="text-lg font-bold mb-4">Register</h2>
-//         <input
-//           type="text"
-//           value={name}
-//           onChange={(e) => setName(e.target.value)}
-//           placeholder="Name"
-//           required
-//           className="border p-2 mb-4 w-full"
-//         />
-//         <input
-//           type="email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           placeholder="Email"
-//           required
-//           className="border p-2 mb-4 w-full"
-//         />
-//         <input
-//           type="password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           placeholder="Password"
-//           required
-//           className="border p-2 mb-4 w-full"
-//         />
-//         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-//           Register
-//         </button>
-//         <button type="button" onClick={onClose} className="ml-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-//           Cancel
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Register;
 
 
 'use client';
@@ -62,6 +5,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -70,35 +14,15 @@ export default function SignUp() {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const { register } = useAuth();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    
-    try {
-      // Get existing users or initialize empty array
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      
-      // Check if email already exists
-      if (existingUsers.some((user) => user.email === email)) {
-        setError('Email already registered');
-        return;
-      }
-
-      // Add new user
-      const newUser = { name, email, password };
-      existingUsers.push(newUser);
-      
-      // Save to localStorage
-      localStorage.setItem('users', JSON.stringify(existingUsers));
-      
-      // Auto login after registration
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('currentUser', JSON.stringify(newUser));
-      
-      // Redirect to home
-      router.push('/home');
-    } catch (err) {
-      setError('Registration failed. Please try again.');
+    const result = await register({ name, email, password });
+    if (result.success) {
+      router.push('/');
+    } else {
+      setError(result.error || 'Invalid email or password');
     }
   };
 

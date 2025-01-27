@@ -35,6 +35,7 @@ const ProductListing = () => {
     };
 
     fetchProducts();
+    resetFilters();
   }, []);
 
   useEffect(() => {

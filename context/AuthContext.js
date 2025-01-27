@@ -47,6 +47,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const AuthContext = createContext();
 
@@ -86,11 +87,13 @@ export const AuthProvider = ({ children }) => {
         };
         setCurrentUser(userWithoutPassword);
         localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
+        toast.success('Login successful');
         return { success: true };
       }
       return { success: false, error: 'Invalid credentials' };
     } catch (error) {
       console.error('Login error:', error);
+      toast.error('An error occurred during login');
       return { success: false, error: 'An error occurred during login' };
     }
   };
@@ -115,12 +118,14 @@ export const AuthProvider = ({ children }) => {
         ...newUser,
         password: undefined
       };
-      
+      localStorage.setItem('isAuthenticated', 'true');
       setCurrentUser(userWithoutPassword);
       localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
+      toast.success(' Registration successful');
       
       return { success: true };
     } catch (error) {
+      toast.error('An error occurred during registration');
       console.error('Registration error:', error);
       return { success: false, error: 'An error occurred during registration' };
     }
@@ -132,9 +137,10 @@ export const AuthProvider = ({ children }) => {
     router.push('/');
   };
 
-  const addToCart = (product, quantity = 1) => {
+  const addToCart = (product, quantity ) => {
     if (!currentUser) {
       router.push('/login');
+      toast.error('Please login to add items to cart');
       return { success: false, error: 'Please login to add items to cart' };
     }
 
@@ -149,6 +155,7 @@ export const AuthProvider = ({ children }) => {
 
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    toast.success('Product added to cart');
     return { success: true };
   };
 

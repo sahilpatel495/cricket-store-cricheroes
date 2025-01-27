@@ -133,11 +133,11 @@ import { useAuth } from '@/context/AuthContext';
 
 const ProductDetail = ({ product }) => {
   const { addToCart } = useAuth();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     console.log(quantity,"passing quantity")
-    addToCart({ ...product, quantity });
+    addToCart({ ...product,  },quantity);
   };
 
   if (!product) return <div>Loading...</div>;
@@ -227,17 +227,17 @@ const ProductDetail = ({ product }) => {
             <span className="text-gray-700">Quantity:</span>
             <div className="flex items-center border border-gray-300 rounded-lg">
               <button
-                onClick={() => setQuantity(Math.max(0, quantity - 1))}
-                className="px-3 py-1 hover:bg-gray-100"
-              >
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="px-3  py-1 hover:bg-gray-200 rounded-l-lg"
+              > 
                 -
               </button>
               <span className="px-4 py-1 border-x border-gray-300">
-                {quantity + 1 }
+                {quantity}
               </span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="px-3 py-1 hover:bg-gray-100"
+                className="px-3 py-1 hover:bg-gray-200 rounded-r-lg"
               >
                 +
               </button>
