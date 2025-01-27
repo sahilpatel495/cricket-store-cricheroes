@@ -33,8 +33,17 @@ const ProductDetail = ({ product }) => {
   };
 
   const handleBuyNow = async () => {
-    await handleAddToCart();
-    router.push("/checkout");
+    const result = await addToCart({ ...product }, quantity, {
+      size: selectedSize,
+      color: selectedColor,
+    });
+  
+    if (result.success) {
+      setQuantity(1);
+      setSelectedSize("");
+      setSelectedColor("");
+      await router.push("/checkout");
+    }
   };
 
   const nextImage = () => {
