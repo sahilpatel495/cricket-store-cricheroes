@@ -1,0 +1,16 @@
+[
+    {
+      "id": "1",
+      "name": "Cricket Bat",
+      "description": "High-quality cricket bat.",
+      "price": 99.99,
+      "image": "https://www.cricketcentral.in/wp-content/uploads/2024/03/Cricket-Central-MRF-Grandp-Edition-Players-Cricket-Bat.jpeg"
+    },
+    {
+      "id": "2",
+      "name": "Cricket Ball",
+      "description": "Durable cricket ball.",
+      "price": 19.99,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmfs1SFXrXzEyq_Fh4NuHa7UfmcchRJfeng&s"
+    }
+  ]
