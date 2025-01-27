@@ -11,7 +11,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch('/products.json'); // Ensure this path is correct
+        const response = await fetch('/products.json');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

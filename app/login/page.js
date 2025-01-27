@@ -60,6 +60,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -67,36 +68,46 @@ export default function SignIn() {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const { login } = useAuth();
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
+  // const handleSignIn = async (e) => {
+  //   e.preventDefault();
     
-    // Retrieve users from localStorage (simulating authentication)
-    const usersString = localStorage.getItem('users');
-    const users = usersString ? JSON.parse(usersString) : [];
+  //   const usersString = localStorage.getItem('users');
+  //   const users = usersString ? JSON.parse(usersString) : [];
     
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
+  //   const user = users.find(
+  //     (user) => user.email === email && user.password === password
+  //   );
 
-    if (user) {
-      // Set authentication state
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('currentUser', JSON.stringify(user));
+  //   if (user) {
+  //    await localStorage.setItem('isAuthenticated', 'true');
+  //    await localStorage.setItem('currentUser', JSON.stringify(user));
       
-      // Redirect to home page
-      router.push('/home');
+  //     router.push('/');
+  //   } else {
+  //     setError('Invalid email or password');
+  //   }
+  // };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setError('');
+    
+    const result = await login({ email, password });
+    
+    if (result.success) {
+      router.push('/');
     } else {
-      setError('Invalid email or password');
+      setError(result.error || 'Invalid email or password');
     }
   };
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded shadow-lg w-full max-w-sm border">
         <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900">Welcome back</h2>
         
